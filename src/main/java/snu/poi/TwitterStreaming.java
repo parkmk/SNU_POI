@@ -10,11 +10,28 @@ public class TwitterStreaming {
     public static void main(String[] args) throws TwitterException, IOException {
         StatusListener listener = new StatusListener(){
             public void onStatus(Status status) {
-                System.out.println(status.getId());
-                System.out.println(status.getPlace());
-                System.out.println(status.getGeoLocation());
-                System.out.println(status.getSource());
-                System.out.println(status.getUser().getName() + " : " + status.getText());
+
+                if(status.getText().matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")
+                        && status.getText().length() > 20) {
+
+                    System.out.println(status.getId());
+                    System.out.println(status.getUser().getId());
+                    System.out.println(status.getUser().getName());
+                    System.out.println(status.getUser().getProfileImageURL());
+                    if (status.getGeoLocation() == null) {
+                        System.out.println(-1 + "," + -1);
+                    } else {
+                        System.out.println(status.getGeoLocation().getLatitude() + "," + status.getGeoLocation().getLongitude());
+                    }
+                    System.out.println(status.getCreatedAt().getTime());
+                    if (status.getSource() == null) {
+                        System.out.println("NULL");
+                    } else {
+                        System.out.println(status.getSource().replaceAll("\n", " "));
+                    }
+                    System.out.println(status.getText().replaceAll("\n", " "));
+                    System.out.println();
+                }
             }
             public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {}
             public void onTrackLimitationNotice(int numberOfLimitedStatuses) {}
