@@ -10,7 +10,7 @@ public class Morph_simple {
     public static void main(String[] args) throws IOException {
         Komoran komoran = new Komoran("models-full");
 
-        List<List<Pair<String, String>>> result = komoran.analyze("ø°");
+        List<List<Pair<String, String>>> result = komoran.analyze("Ïóê");
 
         for (List<Pair<String, String>> eojeolResult : result) {
             for (Pair<String, String> wordMorph : eojeolResult) {
@@ -22,7 +22,6 @@ public class Morph_simple {
             }
             System.out.println();
         }
-
 
     }
 }
