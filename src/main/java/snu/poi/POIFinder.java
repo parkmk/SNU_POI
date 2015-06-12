@@ -67,7 +67,9 @@ public class POIFinder {
         Character[] classifiedResult = classify(buff.toString());
 
         List<Pair<String, Character>> poiAndTypeList = new LinkedList();
+        Set<String> poiSet = new HashSet<String>();
         StringBuffer buffer = new StringBuffer();
+
         char type = 'U';
         for (int i = 0; i < eojeolList.length; i++) {
             if(classifiedResult[i]=='A') {
@@ -84,8 +86,9 @@ public class POIFinder {
                 }
             }
         }
-        if(buffer.length() > 0) {
+        if(buffer.length() > 0 && !poiSet.contains(buffer.toString())) {
             poiAndTypeList.add(new Pair<String, Character>(buffer.toString(), type));
+            poiSet.add(buffer.toString());
         }
 
         return poiAndTypeList;
