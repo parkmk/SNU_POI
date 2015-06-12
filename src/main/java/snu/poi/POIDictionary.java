@@ -28,7 +28,7 @@ public class POIDictionary {
     private void load () throws IOException {
         
         Set<String> excludeSet = new HashSet<String>();
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("models-full"+ File.separator+"notpoi.dict"), "UTF8"));
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(ResourcePath.path + File.separator + "models-full"+ File.separator+"notpoi.dict"), "UTF8"));
         while (true) {
             String line = br.readLine();
             if (line==null) {
@@ -39,7 +39,7 @@ public class POIDictionary {
         }
         br.close();
         
-        br = new BufferedReader(new InputStreamReader(new FileInputStream("models-full"+ File.separator+"poi.dict"), "UTF8"));
+        br = new BufferedReader(new InputStreamReader(new FileInputStream(ResourcePath.path + File.separator + "models-full"+ File.separator+"poi.dict"), "UTF8"));
         while (true) {
             String line = br.readLine();
             if (line==null) {

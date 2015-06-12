@@ -1,5 +1,6 @@
 package snu.poi;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import kr.co.shineware.util.common.model.Pair;
 
 public class MorphAnalyzer {
 
-    private static Komoran komoran = new Komoran("models-full");
+    private static Komoran komoran = new Komoran(ResourcePath.path + File.separator + "models-full");
     private static MorphAnalyzer morphAnalyzer;
 
     private MorphAnalyzer() {

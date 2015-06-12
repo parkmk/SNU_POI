@@ -19,7 +19,7 @@ public class POIFinder {
     private CRFClassifier<CoreLabel> crf;
 
     private POIFinder() throws IOException, ClassNotFoundException {
-        String loadPath = "models-full" + File.separator + "kor-only-model.ser.gz";
+        String loadPath = ResourcePath.path + File.separator + "models-full" + File.separator + "kor-only-model.ser.gz";
         Properties props = new Properties();
         props.setProperty("loadClassifier", loadPath);
         SeqClassifierFlags flags = new SeqClassifierFlags(props);

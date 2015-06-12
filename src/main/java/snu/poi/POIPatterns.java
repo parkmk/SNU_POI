@@ -50,7 +50,7 @@ public class POIPatterns {
     }
 
     private void load () throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("models-full"+ File.separator+"poi.pattern"));
+        BufferedReader br = new BufferedReader(new FileReader(ResourcePath.path + File.separator + "models-full"+ File.separator+"poi.pattern"));
         while (true) {
             String line = br.readLine();
             if (line==null) {
