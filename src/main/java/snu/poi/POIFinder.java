@@ -92,6 +92,45 @@ public class POIFinder {
     }
 
     /**
+     * FInd positions of POIs within the given sentence
+     * @param pioAndTypeList
+     * @param originalSentence
+     * @return
+     */
+    public List<Pair<Integer, Integer>> findPosition(List<Pair<String, Character>> pioAndTypeList, String originalSentence) {
+
+        List<Pair<Integer, Integer>> result = new LinkedList<Pair<Integer, Integer>>();
+        for(Pair<String, Character> pair : pioAndTypeList) {
+            String poi = pair.getFirst();
+            int i=0;
+            while (i < originalSentence.length()) {
+                int currentSetenceIndex = i;
+                int currentPOIIndex = 0;
+                while(true) {
+                    if(currentSetenceIndex >= originalSentence.length() || currentPOIIndex >= poi.length()) {
+                        break;
+                    }
+                    else if(originalSentence.charAt(currentSetenceIndex)==' ') {
+                        currentSetenceIndex++;
+                    }
+                    else if(originalSentence.charAt(currentSetenceIndex) == poi.charAt(currentPOIIndex)) {
+                        currentSetenceIndex++;
+                        currentPOIIndex++;
+                    }
+                    else {
+                        break;
+                    }
+                }
+                if (currentPOIIndex==poi.length()) {
+                    result.add(new Pair<Integer, Integer>(i, currentSetenceIndex));
+                }
+                i = currentSetenceIndex+1;
+            }
+        }
+        return result;
+    }
+
+    /**
      * classify whether each eojeol is POI or not
      * @param input
      * @return 'A': POI, 'O' NOT
@@ -124,7 +163,11 @@ public class POIFinder {
                 String sentence = br.readLine().replaceAll("https?://\\S+\\s?", " ");
                 List<Pair<String, Character>> poiAndTypeList = POIFinder.getInstance().findPOI(sentence);
                 for(Pair<String, Character> poiAndType : poiAndTypeList) {
-                    System.out.println(poiAndType.getFirst()+"\t"+poiAndType.getSecond());
+                    System.out.println(poiAndType.getFirst() + "\t" + poiAndType.getSecond());
+                }
+                if(poiAndTypeList.size() > 0) {
+                    System.out.println(sentence);
+                    System.out.println(POIFinder.getInstance().findPosition(poiAndTypeList, sentence));
                 }
             }
             br.close();
