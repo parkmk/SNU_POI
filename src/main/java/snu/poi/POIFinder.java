@@ -79,8 +79,11 @@ public class POIFinder {
                 }
             }
             else {
-                if(buffer.length() > 0) {
-                    poiAndTypeList.add(new Pair<String, Character>(buffer.toString(), type));
+                if(buffer.length() > 0 ) {
+                    if (!poiSet.contains(buffer.toString())) {
+                        poiAndTypeList.add(new Pair<String, Character>(buffer.toString(), type));
+                        poiSet.add(buffer.toString());
+                    }
                     buffer.setLength(0);
                     type = 'U';
                 }
@@ -158,23 +161,28 @@ public class POIFinder {
 
     public static void main(String[] ar) throws IOException, FileNotFoundException, ClassNotFoundException {
 
-        for(int i=0; i<=8; i++) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("data\\"+i), "UTF8"));
-            while (true) {
-                String id = br.readLine();
-                if (id == null)
-                    break;
-                String sentence = br.readLine().replaceAll("https?://\\S+\\s?", " ");
-                List<Pair<String, Character>> poiAndTypeList = POIFinder.getInstance().findPOI(sentence);
-                for(Pair<String, Character> poiAndType : poiAndTypeList) {
-                    System.out.println(poiAndType.getFirst() + "\t" + poiAndType.getSecond());
-                }
-                if(poiAndTypeList.size() > 0) {
-                    System.out.println(sentence);
-                    System.out.println(POIFinder.getInstance().findPosition(poiAndTypeList, sentence));
-                }
-            }
-            br.close();
+//        for(int i=0; i<=8; i++) {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("data\\"+i), "UTF8"));
+//            while (true) {
+//                String id = br.readLine();
+//                if (id == null)
+//                    break;
+//                String sentence = br.readLine().replaceAll("https?://\\S+\\s?", " ");
+//                List<Pair<String, Character>> poiAndTypeList = POIFinder.getInstance().findPOI(sentence);
+//                for(Pair<String, Character> poiAndType : poiAndTypeList) {
+//                    System.out.println(poiAndType.getFirst() + "\t" + poiAndType.getSecond());
+//                }
+//                if(poiAndTypeList.size() > 0) {
+//                    System.out.println(sentence);
+//                    System.out.println(POIFinder.getInstance().findPosition(poiAndTypeList, sentence));
+//                }
+//            }
+//            br.close();
+//        }
+
+        List<Pair<String, Character>> poiAndTypeList = POIFinder.getInstance().findPOI("I'm at 고속터미널역 (Express Bus Terminal Stn.) I'm at 고속터미널역 (Express Bus Terminal Stn.)");
+        for(Pair<String, Character> poiAndType : poiAndTypeList) {
+            System.out.println(poiAndType.getFirst() + "\t" + poiAndType.getSecond());
         }
     }
 
