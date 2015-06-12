@@ -8,7 +8,13 @@ import java.util.List;
  */
 public class Tagging {
 
-    public static char[] run (String[] wordList, String[] eojeolList) {
+    /**
+     * decide whether each eojel is a part of the given words
+     * @param wordList
+     * @param eojeolList
+     * @return 'P': part of words, 'X': not a part of words
+     */
+    public static char[] match(String[] wordList, String[] eojeolList) {
 
         //remove space
         String[] trimmedWordList = new String[wordList.length];
@@ -96,7 +102,7 @@ public class Tagging {
     public static void main (String[] ar) {
         String[] wordList =new String[]{"카페 베네 봉천점", "광화문"};
         String[] morphList = new String[]{"나는", "오늘", "카페", "베네", "봉천","점", "에", "갔다가", "지금은", "광화문"};
-        char[] tags = run(wordList, morphList);
+        char[] tags = match(wordList, morphList);
         for(int i = 0; i < morphList.length; i++) {
             System.out.println(morphList[i]+" "+tags[i]);
         }
