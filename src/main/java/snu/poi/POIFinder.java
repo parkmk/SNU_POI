@@ -1,13 +1,12 @@
 package snu.poi;
 
 
-import edu.stanford.nlp.ie.AbstractSequenceClassifier;
 import edu.stanford.nlp.ie.crf.CRFClassifier;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.objectbank.ObjectBank;
 import edu.stanford.nlp.sequences.SeqClassifierFlags;
-import edu.stanford.nlp.util.PropertiesUtils;
+import edu.stanford.nlp.util.Quadruple;
 import kr.co.shineware.util.common.model.Pair;
 
 import java.io.*;
@@ -47,6 +46,7 @@ public class POIFinder {
      * @return
      * @throws IOException
      */
+
     public List<Pair<String, Character>> findPOI (String sentence) throws IOException {
 
         sentence = sentence.replaceAll("https?://\\S+\\s?", " "); //remove url
@@ -97,11 +97,12 @@ public class POIFinder {
      * @param originalSentence
      * @return
      */
-    public List<Pair<Integer, Integer>> findPosition(List<Pair<String, Character>> pioAndTypeList, String originalSentence) {
+    public List<Quadruple<Integer, Integer, String, Character>> findPosition(List<Pair<String, Character>> pioAndTypeList, String originalSentence) {
 
-        List<Pair<Integer, Integer>> result = new LinkedList<Pair<Integer, Integer>>();
+        List<Quadruple<Integer, Integer, String, Character>> result = new LinkedList<>();
         for(Pair<String, Character> pair : pioAndTypeList) {
             String poi = pair.getFirst();
+            Character type = pair.getSecond();
             int i=0;
             while (i < originalSentence.length()) {
                 int currentSetenceIndex = i;
@@ -122,7 +123,7 @@ public class POIFinder {
                     }
                 }
                 if (currentPOIIndex==poi.length()) {
-                    result.add(new Pair<Integer, Integer>(i, currentSetenceIndex));
+                    result.add(new Quadruple<Integer, Integer, String, Character>(i, currentSetenceIndex, poi, type));
                 }
                 i = currentSetenceIndex+1;
             }
