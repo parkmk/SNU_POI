@@ -74,8 +74,8 @@ public class Tagging {
         char[] newTags = new char[eojeolList.length];
         int startIndex = -1;
         for (int i = 0; i < eojeolList.length; i++) {
-            if(tags[i] == 'P' || tags[i] == 'X') {
-                newTags[i] = tags[i];
+            if(tags[i] == 'X') {
+                newTags[i] = 'X';
                 startIndex = -1;
             }
             else if(tags[i] == 'M') {
@@ -93,6 +93,15 @@ public class Tagging {
                     }
                 }
                 startIndex = -1;
+            }
+            else if(tags[i] == 'P') {
+                newTags[i] = 'P';
+                if (startIndex > 0) {
+                    for(int j = startIndex; j<=i; j++) {
+                        newTags[j] = 'P';
+                    }
+                }
+                startIndex = i+1;
             }
         }
 

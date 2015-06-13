@@ -11,7 +11,7 @@ public class POIDictionary {
     private Map<String, Character> typeMap = new HashMap ();
     private String[] words;
 
-    private final static Pattern parenthesisPattern = Pattern.compile("(.*)(\\s*)\\((.*)\\)");
+//    private final static Pattern parenthesisPattern = Pattern.compile("(.*)(\\s*)\\((.*)\\)");
     private final static Pattern branchPattern =  Pattern.compile("(.*)(\\s+)(.*)점$");
 
     private  POIDictionary() throws IOException {
@@ -45,17 +45,20 @@ public class POIDictionary {
             if (line==null) {
                 break;
             }
-            String[] tokens = line.trim().split("\t");
+            String[] tokens = line.replaceAll("\\((.*)\\)","").trim().split("\t");
+            if(tokens.length==1) {
+                continue;
+            }
             List<String> entryList = new LinkedList<String>();
             entryList.add(tokens[0].replaceAll(" ", ""));
 
-            Matcher m = parenthesisPattern.matcher(tokens[0]);
-            if(m.find()) {
-                entryList.add(m.group(1).replaceAll(" ", ""));
+//            Matcher m = parenthesisPattern.matcher(tokens[0]);
+//            if(m.find()) {
+//                entryList.add(m.group(1).replaceAll(" ", ""));
 //                entryList.add(m.group(3).replaceAll(" ", ""));
-            }
+//            }
 
-            m = branchPattern.matcher(tokens[0]);
+            Matcher m = branchPattern.matcher(tokens[0]);
             if(m.find()) {
                 entryList.add(m.group(1).replaceAll(" ", ""));
             }
