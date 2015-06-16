@@ -46,7 +46,7 @@ public class EvaluateClassifier {
         bw.write("PRECISION\t" + precision+"\n");
         bw.write("RECALL\t"+ recall+"\n");
         bw.write("F1-SCORE\t" + f1score+"\n");
-        bw.write("ACCURACY\t" + f1score+"\n");
+        bw.write("ACCURACY\t" + accuracy+"\n");
 
         bw.close();
     }
