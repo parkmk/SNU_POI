@@ -36,6 +36,7 @@ public class EvaluateClassifier {
         double precision = ( TP + 0.0 ) / ( TP + FP );
         double recall = ( TP + 0.0 ) / ( TP + FN );
         double f1score = 2 * precision * recall / (precision + recall);
+        double accuracy = ( TP + TN + 0.0 ) / (TP + TN + FP + FN);
 
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("evaluate.txt"), "UTF8"));
         bw.write("TP\t"+TP+"\n");
@@ -45,6 +46,7 @@ public class EvaluateClassifier {
         bw.write("PRECISION\t" + precision+"\n");
         bw.write("RECALL\t"+ recall+"\n");
         bw.write("F1-SCORE\t" + f1score+"\n");
+        bw.write("ACCURACY\t" + f1score+"\n");
 
         bw.close();
     }
