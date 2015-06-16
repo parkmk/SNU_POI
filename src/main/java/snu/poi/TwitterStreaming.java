@@ -17,8 +17,7 @@ public class TwitterStreaming {
         StatusListener listener = new StatusListener(){
             public void onStatus(Status status) {
 
-                if(status.getText().matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")
-                        && status.getText().length() > 20) {
+                if(status.getText().matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*") && status.getText().length() > 20) {
 
                     long tweetId = status.getId();
                     long userId = status.getUser().getId();
@@ -50,23 +49,19 @@ public class TwitterStreaming {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
+                    System.out.println(tweetId);
                 }
             }
             public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {}
             public void onTrackLimitationNotice(int numberOfLimitedStatuses) {}
-
-            public void onScrubGeo(long l, long l1) {
-                // do nothing
-            }
-
-            public void onStallWarning(StallWarning stallWarning) {
-                // do nothing
-            }
-
+            public void onScrubGeo(long l, long l1) {}
+            public void onStallWarning(StallWarning stallWarning) {}
             public void onException(Exception ex) {
                 ex.printStackTrace();
             }
         };
+
         TwitterStream twitterStream = new TwitterStreamFactory().getInstance();
         twitterStream.addListener(listener);
         twitterStream.setOAuthConsumer("ZZmTMFeKXMMEMzK9oLKvyyBzv", "2weNQ7pXUJNpheBiWIEpE7prad4bt5K9wWWuGgefSgV0hIB630");
@@ -79,7 +74,7 @@ public class TwitterStreaming {
 //        filterQuery.language(new String[]{"ko"});
         twitterStream.filter(filterQuery);
 
-        dbModule.close();
+//        dbModule.close();
     }
 
 }

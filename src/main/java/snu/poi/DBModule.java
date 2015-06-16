@@ -5,8 +5,8 @@ import java.text.SimpleDateFormat;
 
 public class DBModule {
 
-//    private static final String DB_URL = "jdbc:mysql://114.108.167.117:3306/snu_poi?useUnicode=true&characterEncoding=UTF-8";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/snu_poi?useUnicode=true&characterEncoding=UTF-8";
+    private static final String DB_URL = "jdbc:mysql://114.108.167.117:3306/snu_poi?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true";
+//    private static final String DB_URL = "jdbc:mysql://localhost:3306/snu_poi?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true";
     private static final String USER = "snu";
     private static final String PASS = "2154";
     private Connection conn = null;
