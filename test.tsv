@@ -525,7 +525,7 @@ I	SL	X	X	O
 m	SL	X	X	O
 at	SL	X	X	O
 광화문	NNP	X	P	A
-지하도	NNG	X	X	A
+지하도	NNG	X	X	O
 Sunshine	SL	X	X	O
 Day	SL	X	X	O
 ?	SF	X	X	O
@@ -1018,7 +1018,7 @@ w	SL	P	X	O
 금정산	NNP	X	P	O
 ...	SE	X	X	O
 금정산성	NNP	X	X	A
-동문	NNG	X	X	A
+동문	NNG	X	X	O
 도착	NNG	X	X	O
 이	VCP	X	X	O
 ㅂ니다	EF	X	X	O
@@ -1296,10 +1296,10 @@ I	SL	X	X	O
 m	SL	X	X	O
 at	SL	X	X	O
 한양대학교	NNP	P	X	A
-제	XPN	P	X	A
-2	SN	P	X	A
-생활관	NNG	P	X	A
-식당	NNG	P	X	A
+제	XPN	P	X	O
+2	SN	P	X	O
+생활관	NNG	P	X	O
+식당	NNG	P	X	O
 -	SS	P	X	O
 @	SW	P	X	O
 i	SL	P	X	O
@@ -1881,7 +1881,7 @@ yo	SL	X	X	O
 !	SF	X	X	O
 !	SF	X	X	O
 새정치민주연합	NNP	X	X	O
-서대문	NNP	X	X	A
+서대문	NNP	X	X	O
 문석진	NNP	X	X	O
 구청장	NNG	X	X	O
 현장	NNG	X	X	O
@@ -1932,7 +1932,7 @@ U턴	NNP	X	X	O
 이	VCP	X	X	O
 ㄴ가	EF	X	X	O
 ?	SF	X	X	O
-서대문	NNP	X	X	A
+서대문	NNP	X	X	O
 주민	NNG	X	X	O
 못살	VV	X	X	O
 겠	EP	X	X	O
