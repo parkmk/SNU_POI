@@ -50,6 +50,7 @@ public class POIFinder {
     public List<Pair<String, Character>> findPOI (String sentence) throws IOException {
 
         sentence = sentence.replaceAll("https?://\\S+\\s?", " "); //remove url
+        sentence = sentence.replaceAll("\\r\\n|\\r|\\n", " ");
         String[] dict = POIDictionary.getInstance().getWords();
         Map<String, Character> typeMap = POIDictionary.getInstance().getTypeMap();
         String[] patternList = POIPatterns.getInstance().find(sentence);
@@ -78,6 +79,12 @@ public class POIFinder {
                     type = typeMap.get(buffer.toString());
                 }
             }
+//            else if(dictTag[i]=='P') {
+//                buffer.append(eojeolList[i]);
+//                if (typeMap.containsKey(buffer.toString())) {
+//                    type = typeMap.get(buffer.toString());
+//                }
+//            }
             else {
                 if(buffer.length() > 0 ) {
                     if (!poiSet.contains(buffer.toString())) {
